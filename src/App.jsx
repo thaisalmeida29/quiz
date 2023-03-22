@@ -1,19 +1,24 @@
 // react, componentes, estáticos
 
+import { useContext } from "react";
 
-import { useState } from 'react'
+import { QuizContext } from "./context/quiz"; 
 
-import './App.css'
+import "./App.css";
 
-import Welcome from './components/Welcome'
+import Welcome from "./components/Welcome";
+
+import Question from "./components/Question"; 
 
 function App() {
-  const [count, setCount] = useState(0)
 
+  const [quizState, dispatch] = useContext(QuizContext);
+  
   return (
     <div className="App">
       <h1> Quiz de Programação</h1>
-      <Welcome />
+      {quizState.gameStage === "Start" && <Welcome/>}
+      {quizState.gameStage === "Playing" && <Question/>}
     </div>
   );
 }
